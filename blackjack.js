@@ -67,7 +67,8 @@ class Blackjack {
         // Add Event Listeners for Buttons --- hit for another card and stay for finish game
         document.getElementById('hit').addEventListener('click', () => this.hit());
         document.getElementById('stay').addEventListener('click', () => this.stay());
-        document.getElementById('restart').addEventListener('click', () => this.resetGame());
+        document.getElementById('restart').addEventListener('click', function(){location.reload()});
+//         document.getElementById('restart').addEventListener('click', () => this.resetGame());
     }
 
     getValue(card) {
@@ -148,22 +149,22 @@ class Blackjack {
         return playerSum;
     }
 
-    resetGame() {
-        this.deck = [];
-        this.hidden;
-        this.yourSum = 0;
-        this.yourAceCount = 0;
-        this.dealerSum = 0;
-        this.dealerAceCount = 0;
-        this.canHit = true;
-        document.getElementById('dealer-cards').innerHTML = `<img id="hidden" src="./cards/BACK.png">`;
-        document.getElementById('your-cards').innerHTML = "";
-        document.getElementById('dealer-sum').textContent = '';
-        document.getElementById('your-sum').textContent = '';
-        let message = '';
-        document.getElementById('results').textContent = message;
-        this.createGame();
-      }
+//     resetGame() {
+//         this.deck = [];
+//         this.hidden;
+//         this.yourSum = 0;
+//         this.yourAceCount = 0;
+//         this.dealerSum = 0;
+//         this.dealerAceCount = 0;
+//         this.canHit = true;
+//         document.getElementById('dealer-cards').innerHTML = `<img id="hidden" src="./cards/BACK.png">`;
+//         document.getElementById('your-cards').innerHTML = "";
+//         document.getElementById('dealer-sum').textContent = '';
+//         document.getElementById('your-sum').textContent = '';
+//         let message = '';
+//         document.getElementById('results').textContent = message;
+//         this.createGame();
+//       }
 }
 
 // On load
