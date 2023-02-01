@@ -45,7 +45,7 @@ class Blackjack {
         this.dealerAceCount += this.checkAce(this.hidden);
         
         // if the sum of dealer cards is less than 17 add another card
-        while (this.dealerSum < 17) {
+        do {
             let cardImg = document.createElement('img');
             let card = this.deck.pop();
             cardImg.src = './cards/' + card + '.png';
@@ -53,6 +53,9 @@ class Blackjack {
             this.dealerAceCount += this.checkAce(card);
             document.getElementById('dealer-cards').append(cardImg);
         }
+        
+        while (this.dealerSum < 17)
+        console.log(this.dealerSum);
 
         // Create 2 starter cards for Player
         for (let i = 0; i < 2; i++) {
@@ -63,12 +66,6 @@ class Blackjack {
             this.yourAceCount += this.checkAce(card);
             document.getElementById('your-cards').append(cardImg);
         }
-
-        // Add Event Listeners for Buttons --- hit for another card and stay for finish game
-        document.getElementById('hit').addEventListener('click', () => this.hit());
-        document.getElementById('stay').addEventListener('click', () => this.stay());
-        document.getElementById('restart').addEventListener('click', function(){location.reload()});
-//         document.getElementById('restart').addEventListener('click', () => this.resetGame());
     }
 
     getValue(card) {
@@ -149,25 +146,31 @@ class Blackjack {
         return playerSum;
     }
 
-//     resetGame() {
-//         this.deck = [];
-//         this.hidden;
-//         this.yourSum = 0;
-//         this.yourAceCount = 0;
-//         this.dealerSum = 0;
-//         this.dealerAceCount = 0;
-//         this.canHit = true;
-//         document.getElementById('dealer-cards').innerHTML = `<img id="hidden" src="./cards/BACK.png">`;
-//         document.getElementById('your-cards').innerHTML = "";
-//         document.getElementById('dealer-sum').textContent = '';
-//         document.getElementById('your-sum').textContent = '';
-//         let message = '';
-//         document.getElementById('results').textContent = message;
-//         this.createGame();
-//       }
+    resetGame() {
+        this.deck = [];
+        this.hidden;
+        this.yourSum = 0;
+        this.yourAceCount = 0;
+        this.dealerSum = 0;
+        this.dealerAceCount = 0;
+        this.canHit = true;
+        document.getElementById('dealer-cards').innerHTML = `<img id="hidden" src="./cards/BACK.png">`;
+        document.getElementById('your-cards').innerHTML = "";
+        document.getElementById('dealer-sum').textContent = '';
+        document.getElementById('your-sum').textContent = '';
+        let message = '';
+        document.getElementById('results').textContent = message;
+        this.createGame();
+      }
 }
 
 // On load
 let game = new Blackjack();
+
+// Add Event Listeners for Buttons --- hit for another card and stay for finish game
+document.getElementById('hit').addEventListener('click', () => { game.hit() });
+document.getElementById('stay').addEventListener('click', () => { game.stay() });
+document.getElementById('restart').addEventListener('click', () => { game.resetGame() });
+
 game.createGame();
 
